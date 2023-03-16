@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>درگاه پرداخت</title>
+
+    <meta name="viewport" content=
+            "width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=
+            "https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity=
+                  "sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <link href=
+                  "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="countdown-widget.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="countdown-widget.css">
+
+
+    <script>
+
+        function onSubmit(token) {
+            document.getElementById("form").submit();
+        }
+
+    </script>
+    <title>Bootstrap Datepicker</title>
+    <link rel="stylesheet" href="clockstyle.css">
+
+
+</head>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="container row py-5 m-5 d-flex justify-content-center align-items-center bg-info">
+
+        <form action="http://localhost:8080/payment/online_payment" method="post" id="form">
+
+            <div class="form-group">
+                <label for="cardNumber">شماره کارت</label>
+                <input type="text" class="form-control" id="cardNumber" maxlength="16" spellcheck="false" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv2">cvv2</label>
+                <input type="text" class="form-control" id="cvv2" maxlength="4" spellcheck="false" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expMonth">ماه انقضاء</label>
+                <input type="text" class="form-control" id="expMonth" maxlength="2" spellcheck="false" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expYear">سال انقضاء</label>
+                <input type="text" class="form-control" id="expYear" maxlength="4" spellcheck="false" required>
+            </div>
+
+            <div class="form-group">
+                <label for="orderTrackingNumber">شماره سفارش</label>
+                <input type="text" class="form-control" id="orderTrackingNumber" spellcheck="false"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="captcha">تصویر</label>
+                <input type="text" class="form-control" id="captcha" maxlength="5" spellcheck="false" required>
+            </div>
+
+            <img alt="captcha" src="/captcha-servlet">
+
+            <p id="key"></p>
+
+            <button id="submit"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                    role="button"> پرداخت
+            </button>
+
+        </form>
+
+    </div>
+
+    <div id="app"></div>
+</div>
+
+<!--               -->
+<div id="ten-countdown"></div>
+<script src="clocklogic.js"></script>
+<!--------->
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity=
+                "sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous">
+</script>
+
+<script src=
+                "https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity=
+                "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous">
+</script>
+<script src=
+                "https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity=
+                "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+</script>
+
+<script>
+
+    $('#submit').on('click', function (e) {
+        e.preventDefault();
+        const cardNumber = document.getElementById("cardNumber");
+        const cvv2 = document.getElementById("cvv2");
+        const expMonth = document.getElementById("expMonth");
+        const expYear = document.getElementById("expYear");
+        const orderTrackingNumber = document.getElementById("orderTrackingNumber");
+        const captcha = document.getElementById("captcha");
+
+        const form = new FormData();
+        form.append("cardNumber", cardNumber.value);
+        form.append("cvv2", cvv2.value);
+        form.append("expMonth", expMonth.value);
+        form.append("expYear", expYear.value);
+        form.append("captcha", captcha.value);
+        form.append("orderTrackingNumber", orderTrackingNumber.value);
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/payment/online_payment",
+            data: form,
+            processData: false,
+            contentType: false,
+            dataType: "text",
+            success: function (response) {
+                e.preventDefault();
+                alert("success")
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                e.preventDefault();
+                alert("error")
+            }
+        });
+    })
+
+</script>
+
+</body>
+</html>
