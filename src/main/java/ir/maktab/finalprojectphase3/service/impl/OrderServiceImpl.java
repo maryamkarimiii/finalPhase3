@@ -93,6 +93,7 @@ public class OrderServiceImpl implements OrderService {
             throw new ValidationException("you cant change status to finished before expert start the work");
         order.setOrderStatus(OrderStatus.FINISH_WORKING);
         order.setFinishWorkingTime(LocalTime.now());
+        expertService.checkExpertOperation(order, offerService.findByOrderAndConfirmed(orderTrackingNumber).getWorkTime());
         orderDao.save(order);
     }
 
@@ -102,7 +103,6 @@ public class OrderServiceImpl implements OrderService {
         if (!order.getOrderStatus().equals(OrderStatus.FINISH_WORKING))
             throw new ValidationException("you cant change status to payed before expert finish the work");
         order.setOrderStatus(OrderStatus.PAID);
-        expertService.checkExpertOperation(order, offerService.findByOrderAndConfirmed(orderTrackingNumber).getWorkTime());
         orderDao.save(order);
     }
 
